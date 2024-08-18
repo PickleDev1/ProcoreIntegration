@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login with Procore</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .login-button {
+            display: inline-block;
+            background-color: #0073e6;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-button:hover {
+            background-color: #005bb5;
+        }
+
+        .login-button:active {
+            background-color: #004a99;
+        }
+
+        .footer {
+            margin-top: 1rem;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .footer a {
+            color: #0073e6;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Login with Procore</h1>
+    <a href="https://login.procore.com/oauth/authorize?client_id=9V4oV68YdbV66cpBr70pFZnxffPAtEWYBz-GOeGN2Us&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcallback" class="login-button">
+        Sign In with Procore
+    </a>
+    <div class="footer">
+        <p>Don't have an account? <a href="https://developers.procore.com/signup" target="_blank">Sign up here</a></p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </div>
+</div>
+</body>
+</html>

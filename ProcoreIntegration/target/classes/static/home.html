@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+
+        h1 {
+            margin-bottom: 1rem;
+            color: #333;
+            text-align: center;
+        }
+
+        .projects-container, .workers-container {
+            margin-top: 1rem;
+        }
+
+        .message {
+            text-align: center;
+            color: #666;
+            font-size: 18px;
+            margin-top: 2rem;
+        }
+
+        .project, .worker {
+            margin-bottom: 1rem;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 1rem 0;
+            background-color: #0073e6;
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .button:hover {
+            background-color: #005bb5;
+        }
+
+        .input-container {
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .input-container input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            width: 100%;
+            max-width: 300px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Projects</h1>
+    <div id="projects-button" class="button">View Projects</div>
+    <div id="projects-container" class="projects-container"></div>
+    <div id="no-projects-message" class="message" style="display: none;">No projects available.</div>
+
+    <h1>Project Workers</h1>
+    <div id="workers-button" class="button">View Workers</div>
+    <div class="input-container">
+        <input type="text" id="worker-id-input" placeholder="Enter Worker ID">
+    </div>
+    <div id="workers-container" class="workers-container"></div>
+    <div id="no-workers-message" class="message" style="display: none;">No worker exists for the given ID.</div>
+</div>
+
+<script>
+    // Example data from API (replace with actual API calls)
+    const projects = []; // This would be populated by your API response for projects
+    const workers = [];  // This would be populated by your API response for workers
+
+    // Handle Projects
+    const projectsButton = document.getElementById('projects-button');
+    const projectsContainer = document.getElementById('projects-container');
+    const noProjectsMessage = document.getElementById('no-projects-message');
+
+    projectsButton.addEventListener('click', function() {
+        projectsContainer.innerHTML = ''; // Clear previous results
+        noProjectsMessage.style.display = 'none'; // Hide the no projects message initially
+
+        if (projects.length === 0) {
+            noProjectsMessage.style.display = 'block';
+        } else {
+            projects.forEach(project => {
+                const projectElement = document.createElement('div');
+                projectElement.className = 'project';
+                projectElement.innerText = `Project Name: ${project.name}`; // Customize as needed
+                projectsContainer.appendChild(projectElement);
+            });
+        }
+    });
+
+    // Handle Workers with Worker ID Input
+    const workersButton = document.getElementById('workers-button');
+    const workersContainer = document.getElementById('workers-container');
+    const noWorkersMessage = document.getElementById('no-workers-message');
+    const workerIdInput = document.getElementById('worker-id-input');
+
+    workersButton.addEventListener('click', function() {
+        workersContainer.innerHTML = ''; // Clear previous results
+        noWorkersMessage.style.display = 'none'; // Hide the no workers message initially
+
+        const workerId = workerIdInput.value.trim();
+
+        if (!workerId) {
+            alert('Please enter a worker ID');
+            return;
+        }
+
+        const filteredWorkers = workers.filter(worker => worker.id === workerId);
+
+        if (filteredWorkers.length === 0) {
+            noWorkersMessage.style.display = 'block';
+        } else {
+            filteredWorkers.forEach(worker => {
+                const workerElement = document.createElement('div');
+                workerElement.className = 'worker';
+                workerElement.innerText = `Worker Name: ${worker.name}`; // Customize as needed
+                workersContainer.appendChild(workerElement);
+            });
+        }
+    });
+</script>
+</body>
+</html>
